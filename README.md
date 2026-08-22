@@ -7,11 +7,13 @@ A privacy-first, standalone browser tool for exploring performance telemetry exp
 - Opens CSV files locally in the browser; performance logs are not uploaded
 - Automatically detects numeric telemetry columns
 - Add, remove, search, and reorder graph rows
+- Timestamp-aware horizontal spacing that shows irregular sampling and recording gaps accurately
 - Min, average, and max statistics for the visible range
 - 1% Low and 0.1% Low statistics for FPS columns
 - Mouse-wheel vertical row scrolling
 - Ctrl + mouse wheel horizontal zoom
 - Drag-to-zoom, Shift + drag panning, previous view, and reset zoom
+- Keyboard zoom, panning, row selection, and row reordering
 - One-row or all-row hover tooltips
 - Auto-collapsing or pinned-open control sidebar
 - No dependencies, installation, server, or build step
@@ -24,6 +26,23 @@ A privacy-first, standalone browser tool for exploring performance telemetry exp
 4. Choose the numeric columns you want to compare.
 
 The application is a single HTML file, so it can also be published directly with GitHub Pages.
+
+## Controls
+
+| Action | Mouse | Keyboard while chart is focused |
+|---|---|---|
+| Zoom in or out | Ctrl + mouse wheel | `+` / `-` |
+| Select a zoom range | Drag across the plot | — |
+| Pan | Shift + drag | Left / Right arrow |
+| Reset zoom | Double-click or **Reset zoom** | `Home` or `0` |
+| Choose a graph row | Point at its row | Up / Down arrow |
+| Move a graph row | Drag its label | Ctrl/Command + Up/Down arrow |
+
+## Time axis and statistics
+
+When the CSV contains a usable timestamp column, samples are positioned according to their actual timestamps rather than their row numbers. Large gaps in a recording are left visually open, and rows without a usable timestamp—such as AMD's aggregate `N/A` summary row—are excluded from the timeline. CSVs without usable timestamps fall back to row-number spacing.
+
+Min, average, max, 1% Low, and 0.1% Low values follow the visible horizontal range. FPS lows are the averages of the lowest 1% and 0.1% of valid FPS samples in that range.
 
 ## Privacy
 
