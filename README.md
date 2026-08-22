@@ -2,7 +2,7 @@
 
 A privacy-first, standalone browser tool for exploring performance telemetry exported from AMD Software: Adrenalin Edition.
 
-**Current version: 1.0.1**
+**Current version: 1.1.0**
 
 ## Features
 
@@ -16,6 +16,7 @@ A privacy-first, standalone browser tool for exploring performance telemetry exp
 - Ctrl + mouse wheel horizontal zoom
 - Drag-to-zoom, Shift + drag panning, previous view, and reset zoom
 - Keyboard zoom, panning, row selection, and row reordering
+- Compact hoverable and clickable chart-navigation help
 - One-row or all-row hover tooltips
 - Auto-collapsing or pinned-open control sidebar
 - No dependencies, installation, server, or build step
