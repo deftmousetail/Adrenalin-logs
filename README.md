@@ -2,11 +2,15 @@
 
 A privacy-first, standalone browser tool for exploring performance telemetry exported from AMD Software: Adrenalin Edition.
 
-**Current version: 1.1.2**
+**Current version: 2.0.0**
 
 ## Features
 
-- Opens CSV files locally in the browser; performance logs are not uploaded
+- Opens one or more CSV files locally in the browser; performance logs are not uploaded
+- Combines hardware and FPS / latency logs on one synchronized timestamp axis
+- Preserves each file's native sampling rate without interpolating values
+- FPS vs GPU, FPS vs CPU, and frame-pacing comparison presets
+- Loaded-file list with sample counts and individual remove controls
 - Automatically detects numeric telemetry columns
 - Add, remove, search, and reorder graph rows
 - Timestamp-aware horizontal spacing that shows irregular sampling and recording gaps accurately
@@ -25,8 +29,8 @@ A privacy-first, standalone browser tool for exploring performance telemetry exp
 
 1. Download `index.html`.
 2. Open it in a modern browser.
-3. Drop an AMD Adrenalin CSV onto the page or select **Open CSV**.
-4. Choose the numeric columns you want to compare.
+3. Drop one or both matching AMD Adrenalin CSVs onto the page, or select **Add CSV files**.
+4. Use a comparison preset or choose the metrics you want to compare.
 
 The application is a single HTML file, so it can also be published directly with GitHub Pages.
 
@@ -43,7 +47,9 @@ The application is a single HTML file, so it can also be published directly with
 
 ## Time axis and statistics
 
-When the CSV contains a usable timestamp column, samples are positioned according to their actual timestamps rather than their row numbers. Large gaps in a recording are left visually open, and rows without a usable timestamp—such as AMD's aggregate `N/A` summary row—are excluded from the timeline. CSVs without usable timestamps fall back to row-number spacing.
+When CSVs contain usable timestamp columns, every source retains its own timestamps and sampling rate. The graphs share a horizontal time axis, but values are not merged or interpolated. Hover values marked `≈` are the closest real reading from that source. The initial `N/A` period in an FPS / latency log remains on the timeline as an empty graph interval until the game begins reporting values.
+
+Large gaps in a recording are left visually open, and rows without a usable timestamp—such as AMD's aggregate `N/A` hardware-summary row—are excluded from the timeline. CSVs without usable timestamps still fall back to row-number spacing, but timestamped and row-based files cannot be combined in one view.
 
 Min, average, max, Sampled 1% Low, and Sampled 0.1% Low values follow the visible horizontal range. FPS lows are the averages of the lowest 1% and 0.1% of valid logged FPS samples in that range. They are sample-based summaries—not per-frame benchmark percentiles—and brief hitches may be missed or averaged out by the logging interval. The same caveat is available from the chart's top-right help button.
 
