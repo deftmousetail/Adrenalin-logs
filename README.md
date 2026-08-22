@@ -31,7 +31,7 @@ The application is a single HTML file, so it can also be published directly with
 
 | Action | Mouse | Keyboard while chart is focused |
 |---|---|---|
-| Zoom in or out | Ctrl + mouse wheel | `+` / `-` on the main keyboard or numeric keypad |
+| Zoom in or out | Ctrl + mouse wheel | `+` / `-` on the main keyboard or numeric keypad; chart focus is not required |
 | Select a zoom range | Drag across the plot | — |
 | Pan | Shift + drag | Left / Right arrow |
 | Reset zoom | Double-click or **Reset zoom** | `Home` or `0` |
