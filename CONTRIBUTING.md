@@ -36,7 +36,7 @@ Before submitting a pull request, verify the relevant behaviors:
 - Plot dragging selects a zoom range.
 - Shift + drag pans the current range.
 - Row labels can be dragged to reorder graph rows.
-- With the chart focused, `+`/`-` zoom and Left/Right arrows pan.
+- With the chart focused, main-keyboard and numpad `+`/`-` zoom and Left/Right arrows pan.
 - Up/Down arrows choose a row and Ctrl/Command + Up/Down reorders it.
 - `Home` and `0` reset the complete timeline.
 - Keyboard row changes are announced by a screen reader.
