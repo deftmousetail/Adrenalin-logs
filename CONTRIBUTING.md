@@ -24,7 +24,12 @@ There is no build step or dependency installation. The application is intentiona
 
 Before submitting a pull request, verify the relevant behaviors:
 
-- A CSV opens through both file selection and drag-and-drop.
+- One or multiple CSVs open through both file selection and drag-and-drop.
+- Hardware and FPS / latency files align on one shared timestamp axis while retaining their native sample times.
+- Leading timestamped FPS `N/A` rows remain as an empty interval; the line begins when numeric reporting starts.
+- FPS vs GPU, FPS vs CPU, and frame-pacing presets select the intended metrics.
+- A loaded source can be removed without breaking the remaining charts.
+- Nearest-source hover values are marked as approximate and are not interpolated.
 - Numeric columns can be added, removed, and searched.
 - Timestamped samples use their real elapsed positions, including irregular gaps.
 - CSVs without usable timestamps fall back to row-number spacing.
