@@ -29,11 +29,12 @@ Before submitting a pull request, verify the relevant behaviors:
 - Adding a new file of an occupied type asks for confirmation and replaces that slot instead of stacking another source.
 - Hardware and FPS / latency files align on one shared timestamp axis while retaining their native sample times.
 - Leading timestamped FPS `N/A` rows remain as an empty interval; the line begins when numeric reporting starts.
-- FPS vs GPU, FPS vs CPU, and frame-pacing presets select the intended metrics.
+- CPU ↔ GPU, GPU limits, and frame-pacing diagnostic views select only their documented metrics.
 - Each loaded source has an obvious **Remove** button, and **Remove all** returns to the empty drop screen.
-- Nearest-source hover values are marked as approximate and are not interpolated.
+- Nearest-source hover values contain no approximation prefix and are not interpolated.
 - Different filename session IDs, non-overlapping ranges, and low-overlap ranges trigger the mismatch confirmation without discarding already loaded files.
 - Numeric columns can be added, removed, and searched.
+- Metric checkboxes remain in source-column order when selected or cleared; graph-row order remains independently draggable.
 - Timestamped samples use their real elapsed positions, including irregular gaps.
 - CSVs without usable timestamps fall back to row-number spacing.
 - Non-timestamp AMD summary rows are not plotted as samples.
@@ -48,6 +49,7 @@ Before submitting a pull request, verify the relevant behaviors:
 - Main-keyboard and numpad `+`/`-` zoom whenever data is loaded; Left/Right arrows pan with the chart focused.
 - Up/Down arrows choose a row and Ctrl/Command + Up/Down reorders it.
 - `Home` and `0` reset the complete timeline.
+- Double-clicking the plot resets the complete timeline and is documented in chart help.
 - Keyboard row changes are announced by a screen reader.
 - The sidebar auto-collapses and can be pinned open.
 - Hover: one and Hover: all both display the intended values.
