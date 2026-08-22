@@ -2,7 +2,7 @@
 
 A privacy-first, standalone browser tool for exploring performance telemetry exported from AMD Software: Adrenalin Edition.
 
-**Current version: 2.0.3**
+**Current version: 2.1.0**
 
 ## Features
 
@@ -11,11 +11,12 @@ A privacy-first, standalone browser tool for exploring performance telemetry exp
 - Limits a session view to two files: one file per supported log type
 - Replaces the occupied slot—with confirmation—when another file of the same type is added
 - Preserves each file's native sampling rate without interpolating values
-- FPS vs GPU, FPS vs CPU, and frame-pacing comparison presets
+- CPU ↔ GPU, GPU limits, and frame-pacing diagnostic views
 - Loaded-file list with explicit **Remove** and **Remove all** controls
 - Session-mismatch warning based on filename identifiers and timestamp overlap
 - Automatically detects numeric telemetry columns
 - Add, remove, search, and reorder graph rows
+- Stable metric-list ordering regardless of checkbox state
 - Timestamp-aware horizontal spacing that shows irregular sampling and recording gaps accurately
 - Min, average, and max statistics for the visible range
 - Top statistics strip automatically follows the graph rows in the vertical viewport
@@ -34,7 +35,7 @@ A privacy-first, standalone browser tool for exploring performance telemetry exp
 1. Download `index.html`.
 2. Open it in a modern browser.
 3. Drop one or both matching AMD Adrenalin CSVs onto the page, or select **Add CSV files**. The reader accepts at most one Hardware file and one FPS / latency file.
-4. Use a comparison preset or choose the metrics you want to compare.
+4. Use a diagnostic view or choose the metrics you want to compare.
 
 The application is a single HTML file, so it can also be published directly with GitHub Pages.
 
@@ -51,7 +52,15 @@ The application is a single HTML file, so it can also be published directly with
 
 ## Time axis and statistics
 
-When CSVs contain usable timestamp columns, every source retains its own timestamps and sampling rate. The graphs share a horizontal time axis, but values are not merged or interpolated. Hover values marked `≈` are the closest real reading from that source. The initial `N/A` period in an FPS / latency log remains on the timeline as an empty graph interval until the game begins reporting values.
+When CSVs contain usable timestamp columns, every source retains its own timestamps and sampling rate. The graphs share a horizontal time axis, but values are not merged or interpolated. Hover uses the nearest real logged reading from each source without adding an approximation symbol. The initial `N/A` period in an FPS / latency log remains on the timeline as an empty graph interval until the game begins reporting values.
+
+## Diagnostic views
+
+- **CPU ↔ GPU:** FPS, GPU utilization, and total CPU utilization for an initial bottleneck triage.
+- **GPU limits:** FPS, GPU utilization, GPU clock, total board power, and GPU hotspot temperature for spotting load, power, clock, or thermal relationships.
+- **Frame pacing:** FPS, average frame time, 99th% FPS, micro-stutter, and heavy-stutter rate for investigating inconsistent delivery.
+
+These views show sampled relationships; they do not establish causation or definitively identify the limiting processor. AMD's Radeon GPU Profiler uses CPU submission and GPU execution/idle timing for processor-level bottleneck classification, which is more detailed than Adrenalin's periodic CSV telemetry. See [AMD's Adrenalin metric definitions](https://www.amd.com/en/resources/support-articles/faqs/DH3-038.html) and [Radeon GPU Profiler's queue-timing methodology](https://gpuopen.com/manuals/rgp_manual/overview_windows/).
 
 Before combining files, the reader compares the session identifier at the end of each standard AMD filename and checks their common timestamp range. Different identifiers, no overlap, or less than 50% overlap with the shorter recording produce a confirmation warning. The user can cancel or deliberately load the files together; an overridden mismatch remains visible in the sidebar status. Other CSV layouts and attempts to select more than one file of either supported type are rejected.
 
