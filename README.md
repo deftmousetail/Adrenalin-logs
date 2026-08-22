@@ -2,7 +2,7 @@
 
 A privacy-first, standalone browser tool for exploring performance telemetry exported from AMD Software: Adrenalin Edition.
 
-**Current version: 2.1.0**
+**Current version: 2.1.1**
 
 ## Features
 
@@ -17,6 +17,7 @@ A privacy-first, standalone browser tool for exploring performance telemetry exp
 - Automatically detects numeric telemetry columns
 - Add, remove, search, and reorder graph rows
 - Stable metric-list ordering regardless of checkbox state
+- Guided empty state explaining the workflow and sampling limitations
 - Timestamp-aware horizontal spacing that shows irregular sampling and recording gaps accurately
 - Min, average, and max statistics for the visible range
 - Top statistics strip automatically follows the graph rows in the vertical viewport
@@ -65,6 +66,8 @@ These views show sampled relationships; they do not establish causation or defin
 Before combining files, the reader compares the session identifier at the end of each standard AMD filename and checks their common timestamp range. Different identifiers, no overlap, or less than 50% overlap with the shorter recording produce a confirmation warning. The user can cancel or deliberately load the files together; an overridden mismatch remains visible in the sidebar status. Other CSV layouts and attempts to select more than one file of either supported type are rejected.
 
 The loaded-file list has a visible **Remove** button for each slot and a **Remove all** action. Adding a different file of an already-loaded type prompts before replacing that slot, so files cannot accumulate across game sessions.
+
+When no files are loaded—or after **Remove all**—the main panel explains the two-file workflow and the limits of periodic logging. AMD allows a sampling interval from 0.25 to 5 seconds. At the fastest 250 ms setting, roughly 15 frames occur at 60 FPS between samples. The reader is therefore intended for sustained trends, major changes, and broad relationships rather than definitive per-frame pacing or bottleneck analysis.
 
 Large gaps in a recording are left visually open, and rows without a usable timestamp—such as AMD's aggregate `N/A` hardware-summary row—are excluded from the timeline. CSVs without usable timestamps still fall back to row-number spacing, but timestamped and row-based files cannot be combined in one view.
 
