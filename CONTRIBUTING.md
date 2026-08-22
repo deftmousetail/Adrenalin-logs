@@ -31,6 +31,7 @@ Before submitting a pull request, verify the relevant behaviors:
 - Leading timestamped FPS `N/A` rows remain as an empty interval; the line begins when numeric reporting starts.
 - CPU ↔ GPU, GPU limits, and frame-pacing diagnostic views select only their documented metrics.
 - Each loaded source has an obvious **Remove** button, and **Remove all** returns to the empty drop screen.
+- The initial and cleared empty states explain file loading, diagnostic views, local processing, and the limits of 0.25–5 second periodic sampling.
 - Nearest-source hover values contain no approximation prefix and are not interpolated.
 - Different filename session IDs, non-overlapping ranges, and low-overlap ranges trigger the mismatch confirmation without discarding already loaded files.
 - Numeric columns can be added, removed, and searched.
