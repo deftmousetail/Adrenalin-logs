@@ -2,7 +2,7 @@
 
 A privacy-first, standalone browser tool for exploring performance telemetry exported from AMD Software: Adrenalin Edition.
 
-**Current version: 1.1.1**
+**Current version: 1.1.2**
 
 ## Features
 
@@ -11,7 +11,7 @@ A privacy-first, standalone browser tool for exploring performance telemetry exp
 - Add, remove, search, and reorder graph rows
 - Timestamp-aware horizontal spacing that shows irregular sampling and recording gaps accurately
 - Min, average, and max statistics for the visible range
-- 1% Low and 0.1% Low statistics for FPS columns
+- Sampled 1% Low and 0.1% Low statistics for FPS columns, with an in-app measurement caveat
 - Mouse-wheel vertical row scrolling
 - Ctrl + mouse wheel horizontal zoom
 - Drag-to-zoom, Shift + drag panning, previous view, and reset zoom
@@ -45,7 +45,7 @@ The application is a single HTML file, so it can also be published directly with
 
 When the CSV contains a usable timestamp column, samples are positioned according to their actual timestamps rather than their row numbers. Large gaps in a recording are left visually open, and rows without a usable timestamp—such as AMD's aggregate `N/A` summary row—are excluded from the timeline. CSVs without usable timestamps fall back to row-number spacing.
 
-Min, average, max, 1% Low, and 0.1% Low values follow the visible horizontal range. FPS lows are the averages of the lowest 1% and 0.1% of valid FPS samples in that range.
+Min, average, max, Sampled 1% Low, and Sampled 0.1% Low values follow the visible horizontal range. FPS lows are the averages of the lowest 1% and 0.1% of valid logged FPS samples in that range. They are sample-based summaries—not per-frame benchmark percentiles—and brief hitches may be missed or averaged out by the logging interval. The same caveat is available from the chart's top-right help button.
 
 ## Privacy
 
