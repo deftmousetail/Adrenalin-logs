@@ -30,6 +30,7 @@ Before submitting a pull request, verify the relevant behaviors:
 - FPS vs GPU, FPS vs CPU, and frame-pacing presets select the intended metrics.
 - A loaded source can be removed without breaking the remaining charts.
 - Nearest-source hover values are marked as approximate and are not interpolated.
+- Different filename session IDs, non-overlapping ranges, and low-overlap ranges trigger the mismatch confirmation without discarding already loaded files.
 - Numeric columns can be added, removed, and searched.
 - Timestamped samples use their real elapsed positions, including irregular gaps.
 - CSVs without usable timestamps fall back to row-number spacing.
