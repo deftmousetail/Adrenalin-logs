@@ -26,6 +26,9 @@ Before submitting a pull request, verify the relevant behaviors:
 
 - A CSV opens through both file selection and drag-and-drop.
 - Numeric columns can be added, removed, and searched.
+- Timestamped samples use their real elapsed positions, including irregular gaps.
+- CSVs without usable timestamps fall back to row-number spacing.
+- Non-timestamp AMD summary rows are not plotted as samples.
 - Min, average, and max follow the visible horizontal range.
 - FPS columns show correct 1% Low and 0.1% Low values.
 - Mouse wheel scrolls graph rows vertically.
@@ -33,6 +36,10 @@ Before submitting a pull request, verify the relevant behaviors:
 - Plot dragging selects a zoom range.
 - Shift + drag pans the current range.
 - Row labels can be dragged to reorder graph rows.
+- With the chart focused, `+`/`-` zoom and Left/Right arrows pan.
+- Up/Down arrows choose a row and Ctrl/Command + Up/Down reorders it.
+- `Home` and `0` reset the complete timeline.
+- Keyboard row changes are announced by a screen reader.
 - The sidebar auto-collapses and can be pinned open.
 - Hover: one and Hover: all both display the intended values.
 
