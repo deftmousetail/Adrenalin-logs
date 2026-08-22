@@ -24,11 +24,13 @@ There is no build step or dependency installation. The application is intentiona
 
 Before submitting a pull request, verify the relevant behaviors:
 
-- One or multiple CSVs open through both file selection and drag-and-drop.
+- One Hardware file, one FPS / latency file, or one matching pair opens through both file selection and drag-and-drop.
+- More than two files, unsupported CSV layouts, and duplicate log types selected in one batch are rejected with a clear message.
+- Adding a new file of an occupied type asks for confirmation and replaces that slot instead of stacking another source.
 - Hardware and FPS / latency files align on one shared timestamp axis while retaining their native sample times.
 - Leading timestamped FPS `N/A` rows remain as an empty interval; the line begins when numeric reporting starts.
 - FPS vs GPU, FPS vs CPU, and frame-pacing presets select the intended metrics.
-- A loaded source can be removed without breaking the remaining charts.
+- Each loaded source has an obvious **Remove** button, and **Remove all** returns to the empty drop screen.
 - Nearest-source hover values are marked as approximate and are not interpolated.
 - Different filename session IDs, non-overlapping ranges, and low-overlap ranges trigger the mismatch confirmation without discarding already loaded files.
 - Numeric columns can be added, removed, and searched.
