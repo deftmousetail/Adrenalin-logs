@@ -2,7 +2,7 @@
 
 A privacy-first, standalone browser tool for exploring performance telemetry exported from AMD Software: Adrenalin Edition.
 
-**Current version: 2.0.2**
+**Current version: 2.0.3**
 
 ## Features
 
@@ -18,6 +18,7 @@ A privacy-first, standalone browser tool for exploring performance telemetry exp
 - Add, remove, search, and reorder graph rows
 - Timestamp-aware horizontal spacing that shows irregular sampling and recording gaps accurately
 - Min, average, and max statistics for the visible range
+- Top statistics strip automatically follows the graph rows in the vertical viewport
 - Sampled 1% Low and 0.1% Low statistics for FPS columns, with an in-app measurement caveat
 - Mouse-wheel vertical row scrolling
 - Ctrl + mouse wheel horizontal zoom
@@ -58,7 +59,7 @@ The loaded-file list has a visible **Remove** button for each slot and a **Remov
 
 Large gaps in a recording are left visually open, and rows without a usable timestamp—such as AMD's aggregate `N/A` hardware-summary row—are excluded from the timeline. CSVs without usable timestamps still fall back to row-number spacing, but timestamped and row-based files cannot be combined in one view.
 
-Min, average, max, Sampled 1% Low, and Sampled 0.1% Low values follow the visible horizontal range. FPS lows are the averages of the lowest 1% and 0.1% of valid logged FPS samples in that range. They are sample-based summaries—not per-frame benchmark percentiles—and brief hitches may be missed or averaged out by the logging interval. The same caveat is available from the chart's top-right help button.
+The statistics strip stays accessible above the chart but includes only graph rows currently visible in the vertical viewport. Min, average, max, Sampled 1% Low, and Sampled 0.1% Low values also follow the visible horizontal time range. FPS lows are the averages of the lowest 1% and 0.1% of valid logged FPS samples in that range. They are sample-based summaries—not per-frame benchmark percentiles—and brief hitches may be missed or averaged out by the logging interval. The same caveat is available from the chart's top-right help button.
 
 ## Privacy
 
