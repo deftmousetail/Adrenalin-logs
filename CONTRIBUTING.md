@@ -38,6 +38,7 @@ Before submitting a pull request, verify the relevant behaviors:
 - CSVs without usable timestamps fall back to row-number spacing.
 - Non-timestamp AMD summary rows are not plotted as samples.
 - Min, average, and max follow the visible horizontal range.
+- The top statistics strip contains only rows intersecting the vertically visible chart viewport and updates while scrolling.
 - FPS columns show correct 1% Low and 0.1% Low values.
 - Mouse wheel scrolls graph rows vertically.
 - Ctrl + mouse wheel zooms horizontally.
