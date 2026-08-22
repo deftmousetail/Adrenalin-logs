@@ -2,7 +2,7 @@
 
 A privacy-first, standalone browser tool for exploring performance telemetry exported from AMD Software: Adrenalin Edition.
 
-**Current version: 1.1.0**
+**Current version: 1.1.1**
 
 ## Features
 
