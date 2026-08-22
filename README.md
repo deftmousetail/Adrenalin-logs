@@ -2,7 +2,7 @@
 
 A privacy-first, standalone browser tool for exploring performance telemetry exported from AMD Software: Adrenalin Edition.
 
-**Current version: 2.0.0**
+**Current version: 2.0.1**
 
 ## Features
 
@@ -11,6 +11,7 @@ A privacy-first, standalone browser tool for exploring performance telemetry exp
 - Preserves each file's native sampling rate without interpolating values
 - FPS vs GPU, FPS vs CPU, and frame-pacing comparison presets
 - Loaded-file list with sample counts and individual remove controls
+- Session-mismatch warning based on filename identifiers and timestamp overlap
 - Automatically detects numeric telemetry columns
 - Add, remove, search, and reorder graph rows
 - Timestamp-aware horizontal spacing that shows irregular sampling and recording gaps accurately
@@ -48,6 +49,8 @@ The application is a single HTML file, so it can also be published directly with
 ## Time axis and statistics
 
 When CSVs contain usable timestamp columns, every source retains its own timestamps and sampling rate. The graphs share a horizontal time axis, but values are not merged or interpolated. Hover values marked `≈` are the closest real reading from that source. The initial `N/A` period in an FPS / latency log remains on the timeline as an empty graph interval until the game begins reporting values.
+
+Before combining files, the reader compares the session identifier at the end of each standard AMD filename and checks their common timestamp range. Different identifiers, no overlap, or less than 50% overlap with the shorter recording produce a confirmation warning. The user can cancel or deliberately load the files together; an overridden mismatch remains visible in the sidebar status.
 
 Large gaps in a recording are left visually open, and rows without a usable timestamp—such as AMD's aggregate `N/A` hardware-summary row—are excluded from the timeline. CSVs without usable timestamps still fall back to row-number spacing, but timestamped and row-based files cannot be combined in one view.
 
