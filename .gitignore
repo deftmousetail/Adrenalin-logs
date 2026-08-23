@@ -1,0 +1,15 @@
+# AMD Adrenalin performance recordings
+*.csv
+!samples/*.csv
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/
+
+# Temporary files
+*.log
+*.tmp
