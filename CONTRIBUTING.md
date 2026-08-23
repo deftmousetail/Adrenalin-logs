@@ -38,9 +38,9 @@ Check the behavior relevant to your change, including:
 - Unsupported files, duplicate source types in one batch, and more than three files produce a clear error.
 - Loading another file of an occupied type asks before replacing it.
 - The three source types align on one timeline while retaining their recorded timestamps.
-- The Loaded files section stays compact; filenames have an accessible `×`, and the `i` panel contains source details and artifact restoration.
+- The Loaded files section stays compact; filenames have an accessible `×`, and the `i` panel contains source details and first-sample restoration.
 - Session-name, time-overlap, and duration checks warn about likely mismatches without discarding already loaded files.
-- The known first-sample `9999 FPS / 0.1 ms` artifact can be excluded and restored without changing the source file or FrameTime anchor.
+- When the conservative detector flags a possible first-sample outlier, it can be excluded and restored without changing the source file or FrameTime anchor.
 - Diagnostic views select their documented metrics. GPU HW and CPU HW remain independently toggleable and can be combined.
 - Metric selection, search, row hiding, row dragging, and keyboard reordering work.
 - Horizontal zoom and pan update both the graph and visible-range statistics.
