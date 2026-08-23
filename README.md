@@ -2,7 +2,7 @@
 
 A privacy-first, standalone browser tool for exploring performance telemetry exported from AMD Software: Adrenalin Edition.
 
-**Current version: 1.1**
+**Current version: 1.1.1**
 
 ## Features
 
@@ -17,7 +17,6 @@ A privacy-first, standalone browser tool for exploring performance telemetry exp
 - Keeps sampled FPS statistics to minimum, average, and maximum so they are not confused with per-frame lows
 - Supports synchronized zooming, panning, hover values, row reordering, search, and keyboard controls
 - Uses an expanded FrameTime overflow scale for large hitches in the Frame time only view
-- Detects the known `9999 FPS / 0.1 ms` startup artifact and lets the user exclude it non-destructively
 - Includes a quick-start Guide, metric glossary, and compact loaded-file information panel
 - Runs as one portable HTML file with no dependencies or build step
 
@@ -46,7 +45,7 @@ C:\Users\YOUR-WINDOWS-USERNAME\AppData\Local\AMD\CN
 
 The FPS / latency CSV is periodic telemetry. Its rows follow the logging interval selected in AMD Adrenalin, usually 250 ms to 5 seconds, but FPS and Average Frame Time may still refresh only about once per second. Repeated values are therefore normal.
 
-The FrameTime file contains individual frame durations. Version 1.1 uses those raw frames for:
+The FrameTime file contains individual frame durations. Version 1.1.1 uses those raw frames for:
 
 - **1% Low FPS:** `1000 / P99 frame time`
 - **0.1% Low FPS:** `1000 / P99.9 frame time`
