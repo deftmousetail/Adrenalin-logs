@@ -6,106 +6,61 @@ Thanks for helping improve AMD Adrenalin CSV Reader.
 
 - Report a reproducible bug
 - Suggest a focused feature
-- Improve AMD log compatibility
 - Improve browser, keyboard, mobile, or accessibility behavior
-- Improve documentation
-
-## Before you start
-
-For a small, focused fix, open a pull request directly. For a large visual redesign, new dependency, file-format change, or architectural change, open an issue first so the approach can be discussed.
-
-Do not commit real or sensitive performance recordings. If a sample is necessary to reproduce a parser problem, remove identifying information and explain the anonymization in the pull request.
+- Improve compatibility with AMD log formats
+- Improve user-facing documentation
 
 ## Development workflow
 
 1. Fork the repository.
-2. Create a branch with a short, descriptive name.
-3. Edit `index.html` or the relevant documentation file.
-4. Open `index.html` locally in a modern browser and test the affected behavior.
-5. Open a pull request that explains what changed and how it was tested.
+2. Create a short, descriptive branch.
+3. Edit `index.html`.
+4. Open it locally in a modern browser and test the complete reader.
+5. Open a pull request explaining the change and how it was tested.
 
-There is no build step or dependency installation. The application is intentionally kept as one portable HTML file, and all log processing must remain local to the browser.
+The app intentionally remains one portable HTML file. There is no dependency installation, build step, or server requirement.
 
-## Supported session files
+## Test with supported sources
 
-The reader accepts at most one file of each type:
+The reader accepts at most one file of each type from a session:
 
-- `Hardware.YYYYMMDD-HHMMSS.CSV`
-- `FPS.Latency.YYYYMMDD-HHMMSS.CSV`
-- `YYYYMMDD-HHMMSS.FrameTime`
+- Hardware CSV
+- FPS / latency CSV
+- FrameTime
 
-Files may be inspected individually or combined when they belong to the same recording session. Loading another file of an occupied type should request confirmation before replacing it.
+The synthetic files in `test` are safe to use for routine checks. Do not commit real recordings unless they have been deliberately anonymized and are necessary to reproduce a parser problem.
 
 ## Testing checklist
 
-Test the parts affected by your change. A pull request does not need to exercise every item when the change is narrowly scoped.
+Check the behavior relevant to your change, including:
 
-### Loading, parsing, and session matching
+- File selection and drag-and-drop accept one, two, or three matching sources.
+- Unsupported files, duplicate source types in one batch, and more than three files produce a clear error.
+- Loading another file of an occupied type asks before replacing it.
+- The three source types align on one timeline while retaining their recorded timestamps.
+- The Loaded files section stays compact; filenames have an accessible `×`, and the `i` panel contains source details and artifact restoration.
+- Session-name, time-overlap, and duration checks warn about likely mismatches without discarding already loaded files.
+- The known first-sample `9999 FPS / 0.1 ms` artifact can be excluded and restored without changing the source file or FrameTime anchor.
+- Diagnostic views select their documented metrics. GPU HW and CPU HW remain independently toggleable and can be combined.
+- Metric selection, search, row hiding, row dragging, and keyboard reordering work.
+- Horizontal zoom and pan update both the graph and visible-range statistics.
+- Tight zooms with one CSV sample show a dashed held value and a marker instead of an empty row.
+- The top statistics strip follows the rows visible in the scrolling chart viewport.
+- Sampled FPS shows only minimum, average, and maximum.
+- Raw FrameTime shows average, P99, P99.9, worst, average FPS, 1% Low, and 0.1% Low.
+- 1% Low equals `1000 / P99 frame time` only when at least 100 frames are visible.
+- 0.1% Low equals `1000 / P99.9 frame time` only when at least 1,000 frames are visible.
+- With matching FPS and FrameTime sources loaded, the FPS row shows a solid logged line and a dashed trailing-one-second raw-derived line on the same scale.
+- FPS hover shows logged FPS, raw-derived FPS, and their difference without shifting timestamps.
+- The FrameTime overview emphasizes min–max variation, and the isolated split scale keeps large spikes readable.
+- The Guide's quick start is visible immediately and its detailed topics expand and collapse correctly.
+- Mouse, touch/pointer, and keyboard controls remain limited to the chart when appropriate.
+- The app remains usable at narrow viewport widths.
 
-- Each supported file type opens through both file selection and drag-and-drop.
-- A matching Hardware, FPS / Latency, and FrameTime set can be loaded together.
-- More than three files, duplicate types in one batch, unsupported layouts, malformed CSV quoting, and unusable files produce a clear error.
-- Adding a second file of an already loaded type requests confirmation and replaces only that source.
-- Individual sources can be removed, and **Remove all** returns to the home screen.
-- Filename session identifiers, timestamp overlap, and recording duration produce a warning when files may not belong to the same session.
-- Hardware and FPS / Latency values retain their recorded timestamps on the shared timeline.
-- Raw FrameTime data aligns to the first valid FPS timestamp without shifting the capture start.
-- Leading timestamped FPS `N/A` rows remain an empty interval; the plot begins when numeric reporting starts.
-- Timestamped samples preserve irregular gaps. Files without usable timestamps fall back to row-number spacing.
-- Non-timestamp AMD summary rows are not plotted.
-- The known first-sample `9999 FPS / 0.1 ms` pattern offers **Exclude artifact** and **Keep all data**.
-- Excluding that artifact affects plots and statistics only, can be reversed from **Loaded files**, and does not alter the original file or FrameTime alignment.
-- Ordinary high FPS values and later `9999` values do not trigger the startup-artifact dialog.
+## Data and privacy
 
-### Metrics, presets, and statistics
+Keep real or sensitive performance logs out of the repository. If a sample is essential for a parser bug, remove identifying information and explain the anonymization in the pull request.
 
-- Numeric metrics can be searched, selected, cleared, hidden, and reordered.
-- Metric choices remain in source-column order; graph-row order remains independently draggable.
-- **CPU ↔ GPU**, **GPU limits**, **Frame pacing**, and **Frame time only** select their documented metrics.
-- **GPU HW** selects numeric GPU Hardware metrics.
-- **CPU HW** selects numeric CPU Hardware metrics plus `SYSTEM MEM UTIL`.
-- GPU HW and CPU HW can be active together, and removing one group leaves the other intact.
-- Statistics use only samples in the visible time range.
-- The statistics strip contains only graph rows that are fully or partly visible and updates while scrolling.
-- FPS statistics show the expected 1% Low and 0.1% Low values.
-- FrameTime statistics and thresholds update with the visible range; **Worst** is the longest visible frame.
-- Dense FrameTime rendering emphasizes the min–max variation strokes, while sufficiently zoomed views show individual frames.
-- The isolated Frame time view retains detail below 50 ms and uses its expanded upper scale for larger spikes.
+## Scope
 
-### Chart interaction and tooltips
-
-- Mouse wheel scrolls graph rows; Ctrl + mouse wheel zooms around the pointer.
-- Dragging the plot selects a time range; Shift + drag pans it.
-- Double-click, `Home`, and `0` restore the complete timeline.
-- `+` and `-` zoom; Left and Right pan when the chart is focused.
-- Up and Down select a row; Ctrl/Command + Up/Down reorder it.
-- Delete and Backspace hide the selected row.
-- Row handles can be dragged, and their × controls hide the intended rows.
-- **Condense** cycles through Full, 72%, 50%, and 33% without changing the selected time range or statistics, and becomes unavailable below the supported viewport width.
-- **Current row** snaps CSV hover values to recorded samples.
-- **All displayed rows** includes only fully or partly visible graph rows and refreshes while the chart scrolls.
-- Sample times appear once per CSV source rather than beside every metric.
-- Raw FrameTime hover values remain exact.
-
-### Interface, guidance, and accessibility
-
-- The sidebar can be opened, collapsed, and pinned.
-- The `?` panel contains chart-navigation controls only.
-- **Guide** and **Glossary** open and close correctly by button, outside click, and Escape.
-- Dialogs do not allow chart keyboard shortcuts to fire while they are open.
-- The home screen shows the Windows log location, supported filename examples, local-processing notice, and repository credit.
-- The layout remains usable on narrow screens; unsupported condensed states fall back to full width without showing a stale active state.
-- Keyboard row changes and status notifications are announced to screen readers.
-- Interactive controls retain visible focus states and meaningful accessible labels.
-
-## Pull request notes
-
-Keep pull requests focused and avoid unrelated formatting changes. In the description, include:
-
-- The problem being addressed
-- The behavior before and after the change
-- The browsers and file combinations tested
-- Screenshots for visible interface changes
-- Any remaining limitations or follow-up work
-
-If a release changes the public version, keep the version shown in `index.html`, the document title, and the README release information consistent.
+Keep pull requests focused. Discuss a large visual redesign, new dependency, or architectural change in an issue before implementation.
