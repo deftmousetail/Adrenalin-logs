@@ -2,11 +2,12 @@
 
 A privacy-first, standalone browser tool for exploring performance telemetry exported from AMD Software: Adrenalin Edition.
 
-**Current version: 1.1.3**
+**Current version: 1.2.0**
 
 ## Features
 
 - Opens one Hardware CSV, one FPS / latency CSV, and one raw FrameTime file from the same session
+- Includes a five-minute synthetic sample session for visitors without AMD logs
 - Processes every file locally in the browser and uses no analytics or cookies
 - Aligns the sources on their recorded timeline without shifting values to make them match
 - Shows each CSV file's detected logging interval
